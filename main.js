@@ -4,10 +4,11 @@ var checklist = [
 
 var listTmpl = {
   item: [
-    '<div class="tab active" data-idx="<%= idx %>">',
+    '<div class="tab" data-idx="<%= idx %>">',
       '<input type="checkbox" name="circle">',
       // '<p><%= content %></p>',
       '<input type="text" name="edit" contentEditable="false" value="<%= content %>">',
+      '<button class="edit">edit</button><button class = "delete">delete</button>',
     '</div>'
   ].join('')
 }
@@ -82,28 +83,39 @@ $(document).on('click', 'input[type="checkbox"]', function(event) {
     }
 });
 
-
-$('div.tab').dblclick(function(event, idx){
-  var $this = $(this);
+$('div').dblclick(function(event, idx){
+  event.preventDefault();
+  var $this = $(this).html();
+  console.log($this);
   //function to change text
-  $this.parent().data("idx");
 });
 
 $('button.all').on('click', function(){
+  event.preventDefault();
   addAllItems(checklist);
 });
 
-$('button.active').on('click', function(){});
+$('button.active').on('click', function(){
+  event.preventDefault();
+  checklist.forEach(function(item){
+    if (item.completed === false){
+
+    } else {
+
+    }
+  })
+});
 
 $('button.completed').on('click', function(){
-  var completeList = checklist.filter(function(el){return el.completed === true});
+  event.preventDefault();
+  var idx = $(this).parent().data("idx");
+
 });
 
 $('button.clearComp').on('click', function(){
-  var idx = $this.parent().data("idx");
-  if (checklist[idx].completed === false){
+  event.preventDefault();
+  console.log($(this));
 
-  }
 });
 
 //--------------------------------------------------->
