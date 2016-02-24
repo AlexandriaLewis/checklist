@@ -1,20 +1,22 @@
 var checklist = [
-  {content: "hit up grocery store"},
-  {content: "wash car"}
+  {content: "starter list item", completed: false}
 ]
 
 var listTmpl = {
   item: [
-    "<div class='tab'>",
-      "<input type='checkbox' name='circle'>",
-      "<p><%= content %></p>",
-    "</div>"
-  ].join("")
+    '<div class="tab active" data-idx="<%= idx %>">',
+      '<input type="checkbox" name="circle">',
+      // '<p><%= content %></p>',
+      '<input type="text" name="edit" contentEditable="false" value="<%= content %>">',
+    '</div>'
+  ].join('')
 }
 
 function getList(){
   return checklist;
 }
+
+
 
 function addItem(newItem){
   checklist.push(newItem);
@@ -25,7 +27,8 @@ function clearItems(idx){
 }
 
 function editItem(idx){
-  //use double click
+  //use double click enable and edit
+  //enter to disable text value
 }
 
 function addItemToDom(content, templateStr, $target){
@@ -44,10 +47,12 @@ function addAllItems(arr){
 function getItemFromDom (){
   var input = $("input[name='getter']").val();
   return {
-    content: input
+    content: input,
+    completed: false
   }
 }
 
+//--------------------------------------------------->
 $(document).ready (function(){
 //--------------------------------------------------->
 
@@ -56,10 +61,49 @@ addAllItems(checklist);
 $('form').on('submit', function (event) {
   event.preventDefault();
   var newPost = getItemFromDom();
-  console.log(newPost);
     addItem(newPost);
     addAllItems(getList());
-    $('input').val('');
+    $('input[name=getter]').val('');
+});
+
+$(document).on('click', 'input[type="checkbox"]', function(event) {
+    var $this = $(this);
+    // $this will contain a reference to the checkbox
+    if ($this.is(':checked')) {
+        var idx = $this.parent().data("idx");
+        checklist[idx].completed = !checklist[idx].completed;
+        $this.siblings().css('text-decoration', 'line-through');
+        $this.siblings().css('color', '#D3D3D3');
+    } else {
+        var idx = $this.parent().data("idx");
+        checklist[idx].completed = !checklist[idx].completed;
+        $this.siblings().css('text-decoration', 'none');
+        $this.siblings().css('color', '#000000');
+    }
+});
+
+
+$('div.tab').dblclick(function(event, idx){
+  var $this = $(this);
+  //function to change text
+  $this.parent().data("idx");
+});
+
+$('button.all').on('click', function(){
+  addAllItems(checklist);
+});
+
+$('button.active').on('click', function(){});
+
+$('button.completed').on('click', function(){
+  var completeList = checklist.filter(function(el){return el.completed === true});
+});
+
+$('button.clearComp').on('click', function(){
+  var idx = $this.parent().data("idx");
+  if (checklist[idx].completed === false){
+
+  }
 });
 
 //--------------------------------------------------->
