@@ -1,0 +1,69 @@
+/* Coolors Exported Palette - coolors.co/e6e1c5-d4cb92-395c6b-80a4ed-bcd3f2 */
+* {
+  background-color: #395c6b;
+  font-family: 'Raleway', sans-serif;
+  font-size: 30px;
+  box-sizing: border-box; }
+
+h1 {
+  font-family: 'Work Sans', sans-serif;
+  color: #bcd3f2;
+  text-align: center;
+  font-size: 119px;
+  margin-bottom: 0; }
+
+h4 {
+  font-size: 15px;
+  display: inline-block;
+  background-color: inherit; }
+
+div.tab {
+  width: 600px;
+  height: 50px;
+  background-color: #e6e1c5;
+  margin: 0 auto;
+  box-shadow: 1px 1px 9px #881D1D; }
+  div.tab p {
+    display: inline-block;
+    margin: 0;
+    background-color: inherit; }
+  div.tab h4.left {
+    position: relative;
+    left: 10px;
+    margin: 0;
+    padding: .5%; }
+  div.tab button {
+    font-size: 15px;
+    background-color: inherit;
+    border: none;
+    box-sizing: border-box; }
+  div.tab button:focus {
+    outline: none; }
+  div.tab button:active {
+    border: 2px solid #d4cb92;
+    border-radius: 4px; }
+  div.tab button.middle {
+    position: relative;
+    left: 124px; }
+  div.tab button.right {
+    position: relative;
+    left: 189px; }
+  div.tab input[type="checkbox"] {
+    -webkit-appearance: none;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    top: 14.7%;
+    background-color: inherit;
+    border-radius: 15px;
+    border: 2px solid #80a4ed; }
+  div.tab input[type="checkbox"]:checked {
+    border-color: #d4cb92; }
+  div.tab input[type="checkbox"]:focus {
+    outline: 0; }
+  div.tab input[type="text"] {
+    background-color: inherit;
+    border: none;
+    width: 532px; }
+  div.tab input[type="text"]:focus {
+    outline: 0; }

@@ -1,0 +1,72 @@
+div.tab {
+  width: 600px;
+  height: 50px;
+  background-color: $color1;
+  margin: 0 auto;
+  box-shadow: 1px 1px 9px #881D1D;
+
+  p {
+    display: inline-block;
+    margin: 0;
+    background-color: inherit;
+  }
+
+
+  h4.left {
+    position: relative;
+    left: 10px;
+    margin: 0;
+    padding: .5%;
+  }
+
+
+  button {
+    font-size: 15px;
+    background-color: inherit;
+    border: none;
+    box-sizing: border-box;
+  }
+  button:focus {
+    outline: none;
+  }
+  button:active {
+    border: 2px solid $color2;
+    border-radius: 4px;
+  }
+  button.middle {
+    position: relative;
+    left: 124px;
+  }
+  button.right {
+    position: relative;
+    left: 189px;
+  }
+
+
+  input[type="checkbox"] {
+    -webkit-appearance:none;
+    width:30px;
+    height:30px;
+    position: relative;
+    top: 14.7%;
+    // background:white;
+    background-color: inherit;
+    border-radius:15px;
+    border:2px solid $color4;
+  }
+  input[type="checkbox"]:checked {
+    border-color: $color2;
+  }
+  input[type="checkbox"]:focus {
+    outline: 0;
+  }
+
+  input[type="text"] {
+    background-color: inherit;
+    border: none;
+    width: 532px;
+  }
+  input[type="text"]:focus {
+    outline: 0;
+  }
+}
