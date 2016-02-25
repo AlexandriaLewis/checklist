@@ -6,7 +6,7 @@ var listTmpl = {
   item: [
     '<div class="tab" data-idx="<%= idx %>">',
       '<input type="checkbox" name="circle">',
-      // '<p><%= content %></p>',
+      // '<p contentEditable="false"><%= content %></p>',
       '<input type="text" name="edit" contentEditable="false" value="<%= content %>">',
       '<button class="edit">edit</button><button class = "delete">delete</button>',
     '</div>'
@@ -17,19 +17,18 @@ function getList(){
   return checklist;
 }
 
-
-
 function addItem(newItem){
   checklist.push(newItem);
 }
 
-function clearItems(idx){
-  //fill in
+function deleteItem(idx){
+  checklist.splice(idx, 1);
 }
 
-function editItem(idx){
-  //use double click enable and edit
-  //enter to disable text value
+function editItem(idx, newItem){
+  var blog = _.where(newItem,{idx: idx})[0];
+  checklist.content = newItem;
+  return checklist;
 }
 
 function addItemToDom(content, templateStr, $target){
@@ -42,7 +41,7 @@ function addAllItems(arr){
   _.each(getList(), function (el, idx){
     el.idx = idx;
     addItemToDom(el, listTmpl.item, $(".content"));
-  })
+  });
 }
 
 function getItemFromDom (){
@@ -83,40 +82,37 @@ $(document).on('click', 'input[type="checkbox"]', function(event) {
     }
 });
 
-$('div').dblclick(function(event, idx){
+$('.content').on('click', '.delete', function (event) {
+   var idx = $(this).closest('article').data('idx');
+   deleteItem(idx);
+   addAllItems(getList());
+ });
+
+ /* Edit Post */
+$('.content').on('click','.edit', function(event) {
   event.preventDefault();
-  var $this = $(this).html();
-  console.log($this);
-  //function to change text
+  var $editableString = $(this).siblings().find('p');
+  var postIdx = $(this).parent().data('idx');
+  $editableString.attr('contenteditable', 'true');
+  $(this).on('click', function(event) {
+    var newContent = $editableString.val();
+    editItem($(this).data("idx"),newContent);
+    addItemToDom('checklist',listTmpl, '.content');
+  });
 });
+
+$('div').dblclick(function(event, idx){});
 
 $('button.all').on('click', function(){
   event.preventDefault();
   addAllItems(checklist);
 });
 
-$('button.active').on('click', function(){
-  event.preventDefault();
-  checklist.forEach(function(item){
-    if (item.completed === false){
+$('button.active').on('click', function(){});
 
-    } else {
+$('button.completed').on('click', function(){});
 
-    }
-  })
-});
-
-$('button.completed').on('click', function(){
-  event.preventDefault();
-  var idx = $(this).parent().data("idx");
-
-});
-
-$('button.clearComp').on('click', function(){
-  event.preventDefault();
-  console.log($(this));
-
-});
+$('button.clearComp').on('click', function(){});
 
 //--------------------------------------------------->
 })
